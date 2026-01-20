@@ -176,7 +176,7 @@ class _TopicPracticeScreenState extends ConsumerState<TopicPracticeScreen> {
             left: 10,
             child: IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => context.pop(),
+              onPressed: () => context.go('/'),
             ),
           ),
 
