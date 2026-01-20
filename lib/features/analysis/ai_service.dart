@@ -53,6 +53,47 @@ class AiAnalysisService {
       return "Analysis Error: $e";
     }
   }
+
+  Future<String> analyzeVideo({
+    required List<int> videoBytes,
+    required String topic,
+  }) async {
+    if (_apiKey.isEmpty) return "Error: API Key Missing";
+
+    final prompt = '''
+    Role: Public Speaking Coach.
+    Topic: "$topic"
+    
+    Task: Watch the video response.
+    1. Analyze the speaker's facial expressions and body language. Are they confident? engaging? distracted?
+    2. Analyze the content (if audible/understandable).
+    3. Provide constructive feedback on delivery and presence.
+    
+    Format:
+    [Expression Score: X/100]
+    [Content Score: Y/100]
+    [Feedback]
+    ...
+    ''';
+
+    try {
+      print('DEBUG: Analyzing video with model: gemini-1.5-flash');
+      // Note: For video, we typically use DataPart. 
+      // Ensure the mimeType matches the video format (e.g., video/mp4).
+      final videoPart = DataPart('video/mp4', videoBytes as dynamic); 
+      // Cast to dynamic if type check issues arise, or UnmodifiableUint8ListView, 
+      // but standard usage is Uint8List.
+      
+      final content = [
+        Content.multi([TextPart(prompt), videoPart])
+      ];
+
+      final response = await _model.generateContent(content);
+      return response.text ?? "Video analysis failed.";
+    } catch (e) {
+      return "Video Analysis Error: $e";
+    }
+  }
 }
 
 final aiServiceProvider = Provider<AiAnalysisService>((ref) {

@@ -52,14 +52,28 @@ class HomeScreen extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: ElevatedButton(
-                  onPressed: () => context.go('/config'),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 56),
-                    backgroundColor: Colors.white,
-                    foregroundColor: AppColors.primary,
-                  ),
-                  child: const Text("Start New Session"),
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => context.go('/config'),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 56),
+                        backgroundColor: Colors.white,
+                        foregroundColor: AppColors.primary,
+                      ),
+                      child: const Text("Start New Session"),
+                    ),
+                    const SizedBox(height: 16),
+                    OutlinedButton(
+                      onPressed: () => context.go('/topic-practice'),
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 56),
+                        foregroundColor: Colors.white,
+                        side: const BorderSide(color: Colors.white),
+                      ),
+                      child: const Text("Topic Practice Mode"),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),

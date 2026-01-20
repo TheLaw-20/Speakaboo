@@ -6,6 +6,8 @@ import 'features/home/home_screen.dart';
 import 'features/session/session_config_screen.dart';
 import 'features/record/recording_screen.dart';
 import 'features/analysis/analysis_screen.dart';
+import 'package:speakaboo/features/topic_practice/topic_practice_screen.dart';
+import 'package:speakaboo/features/topic_practice/topic_analysis_result_screen.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -32,6 +34,20 @@ final _router = GoRouter(
     GoRoute(
       path: '/result',
       builder: (context, state) => const AnalysisScreen(),
+    ),
+    GoRoute(
+        path: '/topic-practice',
+        builder: (context, state) => const TopicPracticeScreen(),
+    ),
+    GoRoute(
+      path: '/topic-result',
+      builder: (context, state) {
+        // Safe casting of extra
+        final data = state.extra as Map<String, String>?;
+        final videoPath = data?['videoPath'] ?? '';
+        final topic = data?['topic'] ?? '';
+        return TopicAnalysisResultScreen(videoPath: videoPath, topic: topic);
+      },
     ),
   ],
 );
