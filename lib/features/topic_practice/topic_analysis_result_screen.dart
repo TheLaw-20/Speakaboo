@@ -67,8 +67,8 @@ class _TopicAnalysisResultScreenState extends ConsumerState<TopicAnalysisResultS
       appBar: AppBar(
         title: const Text("Analysis Result"),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/topic-practice'),
+          icon: const Icon(Icons.home),
+          onPressed: () => context.go('/'),
         ),
       ),
       body: _isLoading

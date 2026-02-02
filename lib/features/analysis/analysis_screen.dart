@@ -38,6 +38,10 @@ class AnalysisScreen extends ConsumerWidget {
             expandedHeight: 200,
             floating: false,
             pinned: true,
+            leading: IconButton(
+              icon: const Icon(Icons.home, color: Colors.white),
+              onPressed: () => context.go('/'),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               title: const Text("Analysis Results"),
               background: Container(

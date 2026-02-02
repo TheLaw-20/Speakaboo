@@ -29,6 +29,15 @@ class SessionConfigScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () => context.go('/'),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
                 Text(
                   "Who are you speaking to?",
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(

@@ -43,6 +43,10 @@ class _RecordingScreenState extends ConsumerState<RecordingScreen> with TickerPr
         title: Text('${session.selectedGoal} -> ${session.selectedAudience}'),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.home, color: Colors.white),
+          onPressed: () => context.go('/'),
+        ),
       ),
       body: Stack(
         children: [
